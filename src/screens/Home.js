@@ -1,26 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import Card from '../components/Card'
-//import Carousel from '../components/Carousel'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 
-
-// Note Search bar is in Carousel and carousel is the child of home page to home page sy carousel ko data
-//ni bhej skty. Qk search bar me jo search kry gy wo whi result de ga or ye tb ho ga jb carousel ko 
-//home page me direct code add kryn, sirf carousel ko home page py call krny sy ni ho ga
-
-// .Map function k through Card ko 1 bar call krwaye gy but front end wo repeatedly call ho jaye ga lekin data sb ka different ho ga
-// Map function javascript ka built in function hai
-//Use Callback, Use Memo important hai read it once
-//Map function curly braces me ni use ho skta hai or map function k liye Array hona chahiye
 export default function Home() {
 
-  const [search, setSearch] = useState(' '); // Making state for search operation  
+  const [search, setSearch] = useState(' '); 
 
-  const [foodCat, setFoodCat] = useState([]);  // state bnaya hai jis k card ko sirf 1 bar call krwae gy
+  const [foodCat, setFoodCat] = useState([]);  
   const [foodItem, setFoodItem] = useState([]);
 
-  const loadData = async () => { // Fetch by default asynchronous hai to is async likhty hain sth
+  const loadData = async () => { 
     let response = await fetch("http://localhost:5000/api/foodData", {
       method: "POST",
       headers: {
@@ -33,7 +23,7 @@ export default function Home() {
     setFoodItem(response[0]);
     setFoodCat(response[1]);
 
-    // console.log(response[0], response[1]); // link with display data ki array [0]food item and [1]food category
+    // console.log(response[0], response[1]); 
 
   }
 
@@ -96,16 +86,10 @@ export default function Home() {
                 .map(filterItems=> { // yaha data value ko compare kr rhy hain or filter ki help sy proper data sb me jaye ga like pizza me pizza ka biryani me biryani ka etc
 
                   return(
-                    // card k andr "props" bnaye HAIN jis ki help sy sb categories ka data bhejy gy fornt end py
-                    //filterItems.name,options,img Props hain or wo value hai jo db me save ki hai isi name sy hai
+                
                     <div key={filterItems._id} className = "col-12 col-md-6 col-lg-4"> 
                     
-                    {/* option k andr 0 diya hai ye db me hai jis sy sb k individual option show hon gy 
-                    <Card foodName = {filterItems.name}
-                    options = {filterItems.options[0]}
-                    imgSrc = {filterItems.img}
-                    
-                    ></Card> */}
+                  
 
                     <Card Card foodItem= {filterItems} //yaha ab sary options ko aik he bar bhej rhy hai option tab k elawa
                     options = {filterItems.options[0]}                    
