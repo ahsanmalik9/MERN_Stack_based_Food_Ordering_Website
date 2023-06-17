@@ -1,16 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useCart, useDispatchCart } from './ContextReducer';
 export default function Card(props) {
-    //Note React me default value ko pehly define krna prta hai
     let dispatch = useDispatchCart();
     let data = useCart() // state ki values
     const priceRef = useRef();
     let options = props.options;
-    let PriceOptions = Object.keys(options);//Object.keys is builtin function jis sy kisi b object ko bhej skty
-
-    //Items ki defaultt value btani pry gi using use state or ye as a data pass ho ga db me for particular user
+    let PriceOptions = Object.keys(options);
     const [qty, setQty] = useState(1);
-    const [size, setSize] = useState(""); // ye dono onchange py call krwaye gy Array.from and  PriceOption sy uper 
+    const [size, setSize] = useState(""); 
 
     const handleAddToCart = async () => {
 
@@ -22,9 +19,6 @@ export default function Card(props) {
                 break;
             }
         }
-
-
-        // for Update (Agr quantity change krty hain to update ho ga or agr size change kryn gy "half,full" to update ni ho ga simply Add to cart ho jaye ga)
         console.log(food)
         console.log(new Date())
         if (food !== []) {
@@ -82,16 +76,6 @@ export default function Card(props) {
                             </div>
 
                         </div>
-                        {/* Use Context helps to deal with props drilling problem mtlab add to cart home page py perform ho ga lekin us ka reflection
-MY Cart me b dekhana hai example k agr multiple pages ho app k or kahin 4th page py My cart hai or us
-me data Cart ka bhejna hai to parent to child send krna pry ga prop ko which is a wastage of time is 
-liye conetext api use krty to hm puri applciation ko wrap kr dety hain context provider k sth or aik state
-gloally define kr dein gy to is sy puri application me aik sth change a jaye ga*/}
-
-                        {/* Use Reducer is liye use kryn gy qk ADD TO CART button boht sary hai is liye sb k liye alg alg functinality
-k liye state bnany ki bajaye aik he global bnaye gy. Is liye state ko use krny ki bajye hook Use reducer
-ko use kryn gy */}
-                        {/* hr means horizontal line and MAKE ADD TO CART BUTTON*/}
                         <hr>
                         </hr>
                         <button className={'btn btn-success justify-center ms-2'} onClick={handleAddToCart}>AddToCart</button>
