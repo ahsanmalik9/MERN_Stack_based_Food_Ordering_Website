@@ -1,9 +1,9 @@
 const express = require('express')
-const router = express.Router(); //calling
+const router = express.Router(); 
 const User = require('../models/User')
 const { body, validationResult } = require('express-validator');
 
-const jwt = require("jsonwebtoken");// will be generated in login
+const jwt = require("jsonwebtoken");
 const bcrypt = require ("bcryptjs");
 
 const jwtSecret = "Mynameisahsanmalikseekmernstak#";
@@ -31,17 +31,11 @@ router.post("/createuser", [
     try {
       await User.create({
 
-        // ------------ this is the data send by thunder client (body) ----------
+      
         name: req.body.name,
         password: secPassword,
         email: req.body.email,
         location: req.body.location,
-
-        // ------------ this is the static data that we add ----------
-        //name:"malak jee",
-        //password:"123456",
-        //email:"malakjee123@gmail.com",
-        //location:"Rawalpindi"
       })
 
       res.json({ success: true });
@@ -51,7 +45,6 @@ router.post("/createuser", [
     }
   })
 
-//check / match user email and password
 router.post("/loginuser", [
   body('email').isEmail(),
   body('password', 'Incorrect Password').isLength({ min: 5 })]
@@ -69,28 +62,20 @@ router.post("/loginuser", [
         return res.status(400).json({ errors: "Entered Email is wrong" })
       }
 
-      // Bcrypt compare orignal password with enrypted hash
       const pwdCompare = await bcrypt.compare(req.body.password, userData.password) 
       if (!pwdCompare)
       {
         return res.status(400).json({ errors: "Entered Password is wrong" })
       }
       
-      // if (req.body.password !== userData.password) {
-      //   return res.status(400).json({ errors: "Entered Password is wrong" })
-      // }
-
-
-      // Take id from mongodb (Data is work as the payload in jwt), Header by default ho ga, and Secret b add kr diya hai
       const data = {
         user:{
           id:userData.id 
         }
       }
 
-      //JWT SIGN
       const authToken = jwt.sign(data,jwtSecret)
-      return res.json({ success: true, authToken:authToken }); // yaha py hm expiry date b add kr skty taky dubara login credentials mangy if login after a long time
+      return res.json({ success: true, authToken:authToken }); 
 
 
       //res.json({success:true});
