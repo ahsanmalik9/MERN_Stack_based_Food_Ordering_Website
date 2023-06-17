@@ -1,6 +1,6 @@
 // connecting backend with database mongodb using the mongoose
 const mongoose = require('mongoose');
-const mongoURI = 'mongodb+srv://mernproject1:882229mernproject1@cluster0.0kvoegm.mongodb.net/foodwebmern?retryWrites=true&w=majority' 
+const mongoURI = 'mongodb+srv://yourprojectName.yourpassword@cluster0.0kvoegm.mongodb.net/foodwebmern?retryWrites=true&w=majority' 
 
 const mongoDB = () => { 
      mongoose.connect(mongoURI, {useNewUrlParser: true},async(err,result) => { 
