@@ -1,15 +1,14 @@
 import React, { createContext, useContext, useReducer } from 'react'
 
 const CartStateContext = createContext(); //global state
-const CartDispatchContext = createContext(); // Use reducer k andr dispath funtion hota hai
+const CartDispatchContext = createContext(); 
 const reducer = (state, action) => {
-    //yaha logic bnaye gy ADD TO CART ki
     switch (action.type) {
         case "ADD":
             return [...state, { id: action.id, name: action.name, qty: action.qty, size: action.size, price: action.price, img: action.img }]
         case "REMOVE":
             let newArr = [...state]
-            newArr.splice(action.index, 1)//splice efficiency decrease krta hai
+            newArr.splice(action.index, 1)
             return newArr;
 
         case "DROP":
@@ -35,7 +34,7 @@ const reducer = (state, action) => {
 
 export const CartProvider = ({ children }) => {
 
-    const [state, dispatch] = useReducer(reducer, []) // Dispatch me multiple action types hoty hain for eg asa button rkhna ho jis sy cart ka data delete krna ho
+    const [state, dispatch] = useReducer(reducer, []) 
 
 
     return (
