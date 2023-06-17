@@ -17,7 +17,6 @@ import MyOrder from './screens/MyOrder';
 
 function App() {
   return (
-    // import Cart Provider from context reducer to ye router global bngya hai
     <CartProvider>
    <Router>
     <div> 
