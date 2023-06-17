@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import Badge from 'react-bootstrap/Badge'; // for My cart functionality
+import Badge from 'react-bootstrap/Badge'; 
 import Modal from '../Modal';
 import Cart from '../screens/Cart';
 import { useCart } from './ContextReducer';
 export default function Navbar() {
 
 const [cartView, setCartView] = useState(false)
-let data = useCart(); // for dynamic number (badge number) on My cart
-// To un comment cntrl + k + u
+let data = useCart(); 
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("authToken");
@@ -30,7 +29,6 @@ let data = useCart(); // for dynamic number (badge number) on My cart
               <li className="nav-item">
                 <Link className="nav-link active fs-5" aria-current="page" to="/">Home</Link>
               </li>
-              {/* After login checking the user whether login or not and if login then Order tab will appear in navbar */}
               {(localStorage.getItem("authToken")) ?
 
                 <li className="nav-item">
@@ -40,21 +38,16 @@ let data = useCart(); // for dynamic number (badge number) on My cart
                 : " "}
             </ul>
 
-            {/* Login signup btn tb display ho ga jb user login ni hwa ho ga yani jb auth token ni generate hoga
-            or auth token tb generate ho ga jb user login ho jaye ga */}
-
             {(!localStorage.getItem("authToken")) ?
 
               <div className='d-flex'>
-                {/* div inline ni hota to is liye bootstrap ki class (className use kr k inline krty hain) */}
-                {/* margins me-1 = margin right,  mx-1 margin left */}
+            
                 <Link className="btn bg-white text-success mx-1" to="/login">Login</Link>
 
                 <Link className="btn bg-white text-success mx-1" to="/createuser">SignUp</Link>
 
               </div>
               :
-              //My cart functionality && data.lenght for dynamic change in badge number
               <div>
                 <div className='btn bg-white text-success mx-2' onClick={()=>{setCartView(true)}}>
                   My Cart {" "}
