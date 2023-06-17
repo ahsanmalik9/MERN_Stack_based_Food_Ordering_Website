@@ -5,7 +5,6 @@ export default function Login() {
   const [credentials, setcredentials] = useState({ email: "", password: "" })//use state snippet
 
   let navigate = useNavigate()
-  // ON SUBMIT k through front end sy backend py request hit kryn gy
   const handlesubmit = async (e) => {
     e.preventDefault();
     console.log(JSON.stringify({email: credentials.email, password: credentials.password})) // display value on consol
@@ -15,8 +14,6 @@ export default function Login() {
       headers: {
         'Content-Type': 'application/json'
       },
-
-      // here through stingify we send data to the backend
       body: JSON.stringify({ email: credentials.email, password: credentials.password })
 
     });
@@ -38,7 +35,6 @@ export default function Login() {
     
   }
 
-  //  to override credential values we use OnChange function 
   const onChange = (event) => {
 
     setcredentials({ ...credentials, [event.target.name]: event.target.value })
