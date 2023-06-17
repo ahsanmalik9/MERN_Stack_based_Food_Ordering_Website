@@ -1,5 +1,3 @@
-// // is me jo data aye ga wo cart.js sy aye ga
-
 const express = require('express')
 const router = express.Router(); //calling
 const Order = require('../models/Orders')
@@ -9,7 +7,6 @@ router.post('/orderData', async (req, res) => {
     await data.splice(0,0,{Order_date:req.body.order_date})
     console.log("1231242343242354",req.body.email)
 
-    //if email not exisitng in db then create: else: InsertMany()
     let eId = await Order.findOne({ 'email': req.body.email })    
     console.log(eId)
     if (eId===null) {
@@ -56,44 +53,3 @@ router.post('/myOrderData', async (req, res) => {
 });
 
 module.exports = router;
-
-
-// router.post('/orderData', async(req, res)=>{
-//     let data = req.body.order_data
-//     await data.splice(0, 0, { Order_date: req.body.order_date })
-
-//     //if email not existing in db then create: else: InsertMany()
-
-//     let eId = await Order.findOne({ 'email': req.body.email })//eId is email id
-//     console.log(eId)
-//     if (eId === null){ //for first order
-//         try{
-//             await Order.create({
-//                 email: req.body.email,
-//                 Order_data: [data]
-//             }).then(()=> {
-//                 res.json({ success: true })
-//             })
-
-//         }catch (error){
-//             console.log(error.message)
-//             res.send("Server Error", error.message)
-//         }
-//     }
-
-//     else {
-//         try { // built in function findoneandupdate checking id if user exist or not and update
-//             await Order.findOneAndUpdate({email: req.body.email},
-//                 { $push: { order_data: data}}).then(() =>{
-//                     res.json({ success:true })
-//                 })
-
-//         } catch(error) {
-//             res.send("Server Error",error.message)
-
-//         }
-//     }
-
-// })
-
-// module.exports = router;
