@@ -28,8 +28,4 @@ const UserSchema = new Schema({
         default:Date.now
     },
 }); 
-
-// model ki help data insert krty hain db me 
-// Model k through CRUD Operation perform krty hain
-module.exports = mongoose.model('user', UserSchema)//user nam ka collection bn jaye ga database me
-
+module.exports = mongoose.model('user', UserSchema)
