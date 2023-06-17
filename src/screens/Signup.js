@@ -2,10 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 export default function Signup() {
-    // due to credentials, all values becaome static and values will not changing in the form.
-    // so to override values we use OnChange function 
     const [credentials, setcredentials] = useState({ name: "", email: "", password: "", geolocation: "" })//use state snippet
-    // ON SUBMIT k through front end sy backend py request hit kryn gy
     const handlesubmit = async (e) => {
         e.preventDefault();
         const response = await fetch("http://localhost:5000/api/createuser", {
@@ -15,12 +12,10 @@ export default function Signup() {
                 'Content-Type': 'application/json'
             },
 
-            // here through stingify we send data to the backend
             body: JSON.stringify({ name: credentials.name, email: credentials.email, password: credentials.password, location: credentials.geolocation })
 
         });
 
-        //console log
         const json = await response.json()
         console.log(json);
 
@@ -29,7 +24,6 @@ export default function Signup() {
         }
     }
 
-    //  to override credential values we use OnChange function 
     const onChange = (event) => {
 
         setcredentials({ ...credentials, [event.target.name]: event.target.value })
