@@ -1,6 +1,6 @@
 // connecting backend with database mongodb using the mongoose
 const mongoose = require('mongoose');
-const mongoURI = 'mongodb+srv://yourprojectName.yourpassword@cluster0.0kvoegm.mongodb.net/foodwebmern?retryWrites=true&w=majority' 
+const mongoURI = 'mongodb+srv://yourprojectName.yourpassword@cluster0.0kvoegm.mongodb.net/foodwebmern?retryWrites=true&w=majority' //  change url to your db you created in atlas 
 
 const mongoDB = () => { 
      mongoose.connect(mongoURI, {useNewUrlParser: true},async(err,result) => { 
